@@ -19,7 +19,7 @@ $User_name=htmlspecialchars($_POST['User_name']);
 $password=htmlspecialchars($_POST['password']);
 // パスワード受け取り
 try{
-  $pdo = new PDO('mysql:host=localhost;dbname=g031o163;charset=utf8','root','',
+  $pdo = new PDO('mysql:host=localhost;dbname=g031o163;charset=utf8','g031o163','uJqY5ht6wacvacip',
   // サーバー情報
   array(PDO::ATTR_EMULATE_PREPARES => false));
   $stmt = $pdo -> prepare("INSERT INTO user (User_name,password) VALUES (:User_name,:password) ");
