@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang = "ja">
+<head>
+  <meta http-equiv="content-type" charset="utf-8">
+  <title>ログイン</title>
+</head>
+<body>
+  <center>
+    <h1>ログイン</h1>
+    <form method = "POST" action = "roginrecord.php">
+      <!-- roginrecord.phpに渡す -->
+      ユーザ名:<input type="text" name="name"size="20"maxlength="15" required><br><br>
+      <!-- ユーザー名入力 -->
+      パスワード:<input type="text" name="password"size="20"maxlength="15" required><br><br>
+      <!-- パスワード入力 -->
+      <input type = "submit" value = "ログイン" span style="color:#0000ff;"/>
+      <!-- 送信ボタン -->
+    </form>
+    <input type="button" onClick="location.href = 'signupform.html';" value="新規登録"　span style="color:#ff0000;">
+  </center>
+</body>
+</html>
