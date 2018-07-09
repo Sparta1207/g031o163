@@ -17,7 +17,10 @@ if (!isset($_SESSION["NAME"])) {
 <body>
   <right>
     <article>
-      <p>USEさんがログイン中</p>
+      <p>ようこそ<?php echo htmlspecialchars($_SESSION["NAME"], ENT_QUOTES); ?>さん</p>
+      <ul>
+        <li><a href="logout.php">ログアウト</a></li>
+      </ul>
     </article>
   </right>
   <center>
