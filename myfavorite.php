@@ -12,7 +12,7 @@ if (!isset($_SESSION["NAME"])) {
 <html lang = "ja">
 <head>
   <meta http-equiv="content-type" charset="utf-8">
-  <title>ホーム</title>
+  <title>myお気に入り</title>
 </head>
 <body>
   <Div Align="left">
@@ -26,7 +26,7 @@ if (!isset($_SESSION["NAME"])) {
       <li><a href="logout.php">ログアウト</a></li>
     </article>
     <center>
-      <h1>ホーム</h1>
+      <h1>myお気に入り</h1>
       <Div Align="right">
         <form action="" method="get">
           <legend>観光地検索</legend>
@@ -38,7 +38,7 @@ if (!isset($_SESSION["NAME"])) {
           <th><input type="button" onClick="location.href = 'spots.php';" value="観光地一覧"　span style="color:#0000ff;"></th>
           <th><input type="button" onClick="location.href = 'favorite.php';" value="Myお気に入り"　span style="color:#0000ff;"></th></tr>
         </table>
-        <img src="1.jpg" border="1" width="300" height="500">
+        <h1>Myお気に入り一覧</h1>
       </center>
     </body>
     </html>
