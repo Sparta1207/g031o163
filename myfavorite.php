@@ -22,23 +22,23 @@ if (!isset($_SESSION["NAME"])) {
   </Div>
   <Div Align="right">
     <article>
-      <legend>ようこそ<?php echo htmlspecialchars($_SESSION["NAME"], ENT_QUOTES); ?>さん</legend>
+      <legend><?php echo htmlspecialchars($_SESSION["NAME"], ENT_QUOTES); ?>さんがログイン中<</legend>
       <li><a href="logout.php">ログアウト</a></li>
     </article>
     <center>
       <h1>myお気に入り</h1>
-      <Div Align="right">
-        <form action="" method="get">
-          <legend>観光地検索</legend>
-          <input type="text" name="search" value="<?php echo $search_value ?>"><input type="submit" name="" value="検索">
-        </form>
-      </Div>
       <table border="1">
         <tr><th><input type="button" onClick="location.href = 'top.php';" value="ホーム"　span style="color:#0000ff;"></th>
           <th><input type="button" onClick="location.href = 'spots.php';" value="観光地一覧"　span style="color:#0000ff;"></th>
-          <th><input type="button" onClick="location.href = 'favorite.php';" value="Myお気に入り"　span style="color:#0000ff;"></th></tr>
+          <th><input type="button" onClick="location.href = 'myfavorite.php';" value="Myお気に入り"　span style="color:#0000ff;"></th></tr>
         </table>
         <h1>Myお気に入り一覧</h1>
       </center>
     </body>
     </html>
+
+      <div id="google_translate_element"></div><script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'ja', includedLanguages: 'en,ja,zh-CN', layout: google.translate.TranslateElement.FloatPosition.BOTTOM_RIGHT}, 'google_translate_element');
+      }
+      </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

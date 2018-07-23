@@ -73,8 +73,16 @@ if (isset($_POST["signUp"])) {
     </form>
     <br>
     <form action="login.php">
-      <input type="submit" value="戻る">
+      <input type="submit" value="ログイン画面へ">
     </form>
   </body>
 </center>
 </html>
+
+<center>
+  <div id="google_translate_element"></div><script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'ja', includedLanguages: 'en,ja,zh-CN', layout: google.translate.TranslateElement.FloatPosition.BOTTOM_RIGHT}, 'google_translate_element');
+  }
+  </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</center>

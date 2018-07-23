@@ -1,10 +1,51 @@
 <?php
 session_start();
-
 // ログイン状態チェック
 if (!isset($_SESSION["NAME"])) {
   header("Location: Logout.php");
   exit;
+}
+
+$db['host'] = 'localhost';
+$db['user'] = 'g031o163';
+$db['pass'] = 'uJqY5ht6wacvacip';
+$db['dbname'] = 'g031o163';
+
+if ($mysqli->connect_errno) {
+  printf("%s\n", $mysqli->connect_errno);
+  exit();
+}
+
+$errorMessage = "";
+$signUpMessage = "";
+
+if (isset($_POST["Review"])) {
+  if (empty($_POST["username"])) {  // 値が空のとき
+    $errorMessage = '投稿者名が未入力です。';
+  } else if (empty($_POST["spotname"])) {
+    $errorMessage = '観光地名が未入力です。';
+  } else if (empty($_POST["review"])) {
+    $errorMessage = 'コメントが未入力です。';
+  }
+
+  if (!empty($_POST["username"]) && !empty($_POST["spotname"]) && !empty($_POST["review"])) {
+    $username = $_POST["username"];
+    $spotname = $_POST["spotname"];
+    $review = $_POST["review"];
+
+    $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
+
+    try {
+      $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+      $stmt = $pdo->prepare("INSERT INTO reviews (username, spotname, review) VALUES (?, ?, ?)");
+
+      $signUpMessage = 'レビューを投稿しました。';
+    } catch (PDOException $e) {
+      $errorMessage = 'データベースエラー';
+      // $e->getMessage() //でエラー内容を参照可能（デバッグ時のみ表示）
+      // echo $e->getMessage();
+    }
+  }
 }
 ?>
 
@@ -22,21 +63,15 @@ if (!isset($_SESSION["NAME"])) {
   </Div>
   <Div Align="right">
     <article>
-      <legend>ようこそ<?php echo htmlspecialchars($_SESSION["NAME"], ENT_QUOTES); ?>さん</legend>
+      <legend><?php echo htmlspecialchars($_SESSION["NAME"], ENT_QUOTES); ?>さんがログイン中</legend>
       <li><a href="logout.php">ログアウト</a></li>
     </article>
     <center>
       <h1>岩手山</h1>
-      <Div Align="right">
-        <form action="" method="get">
-          <legend>観光地検索</legend>
-          <input type="text" name="search" value="<?php echo $search_value ?>"><input type="submit" name="" value="検索">
-        </form>
-      </Div>
       <table border="1">
         <tr><th><input type="button" onClick="location.href = 'top.php';" value="ホーム"　span style="color:#0000ff;"></th>
           <th><input type="button" onClick="location.href = 'spots.php';" value="観光地一覧"　span style="color:#0000ff;"></th>
-          <th><input type="button" onClick="location.href = 'favorite.php';" value="Myお気に入り"　span style="color:#0000ff;"></th></tr>
+          <th><input type="button" onClick="location.href = 'myfavorite.php';" value="Myお気に入り"　span style="color:#0000ff;"></th></tr>
         </table>
       </center>
       <Div Align="left">
@@ -69,7 +104,24 @@ if (!isset($_SESSION["NAME"])) {
           </tr>
         </table>
       </table><br>
-          <h1>レビュー</h1>
+      <h1>レビュー</h1>
+      <form id="review" name="review"　method = "POST" action = "">
+        レビュー:<br />
+        <label for="username">投稿者名</label><input type="text" id="username" name="username" placeholder="投稿者名を入力">
+        <br>
+        <label for="spotname">観光地名</label><input type="text" id="spotname" name="spotname"  placeholder="観光地名を入力">
+        <br>
+        <label for="review">コメント</label><input type="textarea" id="review" name="review"  placeholder="コメントを入力"　cols="50" rows="7">
+        <br>
+        <input type = "submit" id="Review" name = "Review" value = "投稿" />
+      </form>
     </Div>
   </body>
   </html>
+
+
+    <div id="google_translate_element"></div><script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'ja', includedLanguages: 'en,ja,zh-CN', layout: google.translate.TranslateElement.FloatPosition.BOTTOM_RIGHT}, 'google_translate_element');
+    }
+    </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

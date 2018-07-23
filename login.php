@@ -91,6 +91,12 @@ if (isset($_POST["login"])) {
       <legend>新規登録フォーム</legend>
       <input type="submit" value="新規登録">
     </form>
+    <br>
+    <div id="google_translate_element"></div><script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'ja', includedLanguages: 'en,ja,zh-CN', layout: google.translate.TranslateElement.FloatPosition.BOTTOM_RIGHT}, 'google_translate_element');
+    }
+    </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </center>
 </body>
 </html>
